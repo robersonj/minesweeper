@@ -15,11 +15,6 @@ export class Board {
     //Add flipTile() to the Board Class
     flipTile(rowIndex, columnIndex) {
 
-        if (this._playerBoard[rowIndex][columnIndex] !== ' ') {
-            console.log('This tile has already been flipped!');
-            return;
-        }
-
         if (this._playerBoard[rowIndex][columnIndex] === 'F') {
             console.log('This tile is flagged as a bomb and cannot be flipped.');
             return;
@@ -49,9 +44,7 @@ export class Board {
             const neighborRowIndex = rowIndex + offset[0];
             const neighborColumnIndex = columnIndex + offset[1];
             if (neighborRowIndex >= 0 && neighborRowIndex < numberOfRows && neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns) {
-                console.log(`tile to flip: ${neighborRowIndex}, ${neighborColumnIndex}`);
-                console.log(this._playerBoard[rowIndex][columnIndex]);
-                this.flipTile(rowIndex, columnIndex);
+                this.flipTile(neighborRowIndex, neighborColumnIndex);
             }
         });
     }
